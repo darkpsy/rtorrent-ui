@@ -1,4 +1,4 @@
-ruTorrent
+WebGUI for rTorrent
 =========
 
 ruTorrent is a front-end for the popular BitTorrent client [rtorrent]
