@@ -1,0 +1,25 @@
+.tfavicon { 
+	display: inline-block;
+	vertical-align: middle;
+	width: 16px; 
+	height: 16px; 
+	margin-right: 2px; 
+}
+.tfavicon.rss{
+	width: 15px;
+	height: 15px;
+	margin-right: 6px;
+}
+.tfavicon.label{
+	width: 14px;
+	height: 14px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+.label-text{
+	display: inline-block;
+	vertical-align: middle;
+}
+.label-text.inlabel{
+	margin-left: 3px;
+}

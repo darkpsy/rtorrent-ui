@@ -1,0 +1,14 @@
+#meter-cpu-text { position: absolute; left: 40px; top: 0px; font-size: 11px; }
+#meter-cpu-holder { 
+	display: inline-block;
+	vertical-align: middle;
+	
+	/*float: left;*/
+	width: 100px; 
+	height: 16px; 
+	line-height: 16px;
+}
+#meter-cpu-holder .tfavicon{
+	float: left;
+}
+/*#meter-cpu-td { background: url(./images/cpu.png) 5px no-repeat; }*/

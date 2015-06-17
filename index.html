@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RuTorrent GUI</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" /> 
+		<meta http-equiv="cache-control" content="no-cache" />
+		<link href="/assets/img/favicon.png" rel="SHORTCUT ICON" />
+		<link rel="apple-touch-icon-precomposed" sizes="57x57"
+					href="/assets/img/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/img/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/img/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/img/apple-touch-icon-152x152.png" />
+
+		<link rel="icon" type="image/png" href="/assets/img/favicon-196x196.png" sizes="196x196" />
+		<link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
+
+		<meta name="msapplication-TileColor" content="#FFFFFF" />
+		<meta name="msapplication-TileImage" content="/assets/img//mstile-144x144.png" />
+
+		<link href="/assets/styles/stable.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/styles/style.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript" src="./lang/langs.js"></script>
+		<script type="text/javascript" src="./js/common.js"></script>
+		<script type="text/javascript" src="./js/objects.js"></script>
+		<script type="text/javascript" src="./js/content.js"></script>
+		<script type="text/javascript" src="./js/stable.js"></script>
+		<script type="text/javascript" src="./js/jquery.flot.js"></script>
+		<script type="text/javascript" src="./js/graph.js"></script>
+		<script type="text/javascript" src="./js/plugins.js"></script>
+		<script type="text/javascript" src="./js/webui.js"></script>
+		<script type="text/javascript" src="./js/rtorrent.js"></script>
+
+	</head>
+	<body>
+		<div id="preload"></div>
+		<div id="cover">
+			<div id="msg"><span id="loadimg">&nbsp;</span><script type="text/javascript"> document.write(theUILang.Loading); </script></div>
+		</div>
+		<div id="modalbg"></div>
+		<div id="dragmask"></div>
+		<div id="rs"></div>
+		<div id="sel"></div>
+		<div id="sc"></div>
+		<div id="t" class="toolbar">
+
+			<div id="mnu_add" onclick="theWebUI.showAdd(); return(false);" class="icon" title="Add Torrent...">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-8c-1.1 0-1.99.9-1.99 2l-.01 16c0 1.1.89 2 1.99 2h12.01c1.1 0 2-.9 2-2v-12l-6-6zm2 14h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm-3-7v-5.5l5.5 5.5h-5.5z"/></svg>
+			</div>
+			<div class="TB_Separator"></div>
+			<div id="mnu_create" onclick="theWebUI.showCreate(); return(false);" title="Create Torrent..." class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25v3.75h3.75l11.06-11.06-3.75-3.75-11.06 11.06zm17.71-10.21c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+			</div>
+			<div class="TB_Separator"></div>
+			<div id="mnu_remove" onclick="theWebUI.remove(); return(false);" title="Remove" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-12h-12v12zm13-15h-3.5l-1-1h-5l-1 1h-3.5v2h14v-2z"/></svg>
+			</div>
+			<div class="TB_Separator"></div>
+
+			<div id="mnu_start" onclick="theWebUI.start(); return(false);" title="Start" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+			</div>
+			<div id="mnu_pause" onclick="theWebUI.pause(); return(false);" title="Pause" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+			</div>
+			<div id="mnu_stop" onclick="theWebUI.stop(); return(false);" title="Stop" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+			</div>
+			<div class="TB_Separator"></div>
+		
+			<div id="mnu_settings" onclick="theWebUI.showSettings(); return(false);" title="Settings" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65c-.03-.24-.24-.42-.49-.42h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-7.43 2.52c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+			</div>
+			
+			<div class="TB_Separator"></div>
+			
+			<div id="mnu_help" onclick="theDialogManager.toggle('dlgHelp'); return(false);" title="Help" class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92c-.72.73-1.17 1.33-1.17 2.83h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+			</div>
+			
+			<table id='rc' cellpadding="0" cellspacing="0">
+				<tr id='rrow'>
+					<td>
+						<div id="mnu_search" class="icon" onclick="theSearchEngines.show(); return(false);" title="Search">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27c.98-1.14 1.57-2.62 1.57-4.23 0-3.59-2.91-6.5-6.5-6.5s-6.5 2.91-6.5 6.5 2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99 1.49-1.49-4.99-5zm-6 0c-2.49 0-4.5-2.01-4.5-4.5s2.01-4.5 4.5-4.5 4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/></svg>
+						</div>
+					</td>
+					<td>
+						<input type="text" class="TextboxMid" id="query" onfocus="$('#sc').hide();"/>
+					</td>
+					<td>
+						<div id="mnu_go" onclick="theSearchEngines.run(); return(false);" title="Go" class="icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+						</div>
+					</td>
+					<td>
+						<div id="ind"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<table id="maincont" cellpadding="0" cellspacing="0" summary="layout table">
+			<tr>
+				<td class="uicell" rowspan="3">
+					<div id="CatList">
+						<div class="catpanel" id="pstate" onclick="theWebUI.togglePanel(this); return(false);">
+							<script type="text/javascript">document.write(theUILang.pnlState);</script>
+						</div>
+						<ul id="pstate_cont" class="catpanel_cont">
+							<li id="-_-_-all-_-_-" class="sel cat">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon"><path d="M20 6h-8l-2-2h-6c-1.1 0-1.99.9-1.99 2l-.01 12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zm0 12h-16v-10h16v10z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.All);</script> (<span id="-_-_-all-_-_-c">0</span>)
+								</div>
+							</li>
+							<li id="-_-_-dls-_-_-" class="cat">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon blue"><path d="M19 9h-4v-6h-6v6h-4l7 7 7-7zm-14 9v2h14v-2h-14z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.Downloading);</script> (<span id="-_-_-dls-_-_-c">0</span>)
+									</div>
+							</li>
+							<li id="-_-_-com-_-_-" class="cat">
+								<svg xmlns="http://www.w3.org/2000/svg" class="tfavicon green" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2h-14z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.Finished);</script> (<span id="-_-_-com-_-_-c">0</span>)		
+								</div>
+							</li>
+							<li id="-_-_-act-_-_-" class="cat">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon"><path d="M16 17.01v-7.01h-2v7.01h-3l4 3.99 4-3.99h-3zm-7-14.01l-4 3.99h3v7.01h2v-7.01h3l-4-3.99z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.Active);</script> (<span id="-_-_-act-_-_-c">0</span>)
+								</div>
+							</li>
+							<li id="-_-_-iac-_-_-" class="cat">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon gray"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm3-4.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-7-3.5c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm0 3.5c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-7 3.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.Inactive);</script> (<span id="-_-_-iac-_-_-c">0</span>)
+								</div>
+							</li>
+							<li id="-_-_-err-_-_-" class="cat">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon red"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm1 15h-2v-2h2v2zm0-4h-2v-6h2v6z"/></svg>
+								<div class="label-text">
+									<script type="text/javascript">document.write(theUILang.Error);</script> (<span id="-_-_-err-_-_-c">0</span>)
+								</div>
+							</li>
+						</ul>
+
+						<div class="catpanel" id="plabel" onclick="theWebUI.togglePanel(this); return(false);">
+							<script type="text/javascript">document.write(theUILang.Labels);</script>
+						</div>
+						
+						<div class="catpanel_cont" id="plabel_cont">
+							<ul>
+								<li id="-_-_-nlb-_-_-" class="cat">
+									<div class="label-text">
+										<script type="text/javascript">document.write(theUILang.No_label);</script> (<span id="-_-_-nlb-_-_-c">0</span>)
+									</div>
+								</li>
+							</ul>
+							<ul id="lbll"></ul>
+						</div>
+
+						<div class="catpanel" id="flabel" onclick="theWebUI.togglePanel(this); return(false);">
+							<script type="text/javascript">document.write(theUILang.mnu_search);</script>
+						</div>
+						<div class="catpanel_cont" id="flabel_cont">
+							<ul id="lblf">
+							</ul>
+						</div>
+
+					</div>
+				</td>
+				<td class="uicell" rowspan="3">
+					<div id="HDivider"></div><div id="dividerDrag"></div>
+				</td>
+				<td class="uicell">
+					<div id="List" class="table_tab"></div>
+				</td>
+			</tr>
+			<tr>
+				<td class="uicell">
+					<div id="VDivider"></div>
+				</td>
+			</tr>
+			<tr>
+				<td class="uicell">
+					<div id="tdetails">
+						<ul id="tabbar" class="tabbar">
+						</ul>
+						<div id="tdcont">
+							<div id="gcont" class="tab">
+								<table cellpadding="5" cellspacing="2" width="100%" summary="layout table" id="mainlayout">
+									<tr>
+										<td colspan="6" class="Header">
+											<script type="text/javascript"> document.write(theUILang.Transfer); </script></td>
+									</tr>
+									<tr>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Time_el); </script>:</td><td width="11%" nowrap><span id="et" class="det"></span></td>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Remaining); </script>:</td><td width="11%" nowrap><span id="rm" class="det"></span></td>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Share_ratio); </script>:</td><td width="11%" nowrap><span id="ra" class="det"></span></td>
+									</tr>
+									<tr>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Downloaded); </script>:</td><td width="11%" nowrap><span id="dl" class="det"></span></td>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Down_speed); </script>:</td><td width="11%" nowrap><span id="ds" class="det"></span></td>
+										<td width="6%" nowrap><script type="text/javascript"> document.write(theUILang.Wasted); </script>:</td><td width="11%" nowrap><span id="wa" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Uploaded); </script>:</td><td nowrap><span id="ul" class="det"></span></td>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Ul_speed); </script>:</td><td nowrap><span id="us" class="det"></span></td>
+										<td nowrap>&nbsp;</td><td nowrap>&nbsp;</td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Seeds); </script>:</td><td nowrap><span id="se" class="det"></span></td>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Peers); </script>:</td><td nowrap><span id="pe" class="det"></span></td>
+										<td nowrap>&nbsp;</td><td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="6" class="Header">
+											<script type="text/javascript"> document.write(theUILang.Tracker); </script></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Track_URL); </script>:</td>
+										<td colspan="5" nowrap><span id="tu" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Track_status); </script>:</td>
+										<td colspan="5" nowrap><span id="ts" class="det"></span></td>
+									</tr>
+									<tr>
+										<td colspan="6" class="Header">
+											<script type="text/javascript"> document.write(theUILang.General); </script></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Save_as); </script>:</td>
+										<td colspan="5" nowrap><span id="bf" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Free_Disk_Space); </script>:</td>
+										<td colspan="5" nowrap><span id="dsk" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Created_on); </script>:</td>
+										<td colspan="5" nowrap><span id="co" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Hash); </script>:</td>
+										<td colspan="5" nowrap><span id="hs" class="det"></span></td>
+									</tr>
+									<tr>
+										<td nowrap><script type="text/javascript"> document.write(theUILang.Comment); </script>:</td>
+										<td colspan="5"><span id="cmt" class="det"></span></td>
+									</tr>
+								</table>
+							</div>
+							<div id="FileList" class="table_tab"></div>
+							<div id="TrackerList" class="table_tab"></div>
+							<div id="PeerList" class="table_tab"></div>
+							<div id="Speed" class="graph_tab"></div>
+							<div id="PluginList" class="table_tab"></div>
+							<div id="lcont" class="tab"></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="uicell middle" colspan=3>
+					<div id="StatusBar">
+						<table cellpadding="0" cellspacing="0">
+							<tr id="firstStatusRow">
+								<td>
+									<table id="st_up" class="statuscell" cellpadding="0" cellspacing="0">
+										<tr>
+											<td>
+												<svg xmlns="http://www.w3.org/2000/svg" class="tfavicon green" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2h-14z"/></svg>
+												<div class="sthdr">
+													<script type="text/javascript"> document.write(theUILang.Speed); </script>:
+												</div>
+											</td>
+										<td>
+											<div class="stval" id="stup_speed"></div>
+										</td>
+										<td>
+											<div class="sthdr">
+												<script type="text/javascript"> document.write(theUILang.limit); </script>:
+											</div>
+										</td>
+										<td>
+											<div class="stval" id="stup_limit"></div>
+										</td>
+										<td>
+											<div class="sthdr">
+												<script type="text/javascript"> document.write(theUILang.Total); </script>:
+											</div>
+										</td>
+										<td>
+											<div class="stval" id="stup_total"></div>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table id="st_down" class="statuscell" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="tfavicon blue"><path d="M19 9h-4v-6h-6v6h-4l7 7 7-7zm-14 9v2h14v-2h-14z"/></svg>
+											<div class="sthdr">
+												<script type="text/javascript"> document.write(theUILang.Speed); </script>:
+											</div>
+										</td>
+										<td>
+											<div class="stval" id="stdown_speed"></div>
+										</td>
+										<td>
+											<div class="sthdr">
+												<script type="text/javascript"> document.write(theUILang.limit); </script>:
+											</div>
+										</td>
+										<td>
+											<div class="stval" id="stdown_limit"></div>
+										</td>
+										<td>
+											<div class="sthdr">
+												<script type="text/javascript"> document.write(theUILang.Total); </script>:
+											</div>
+										</td>
+										<td>
+											<div class="stval" id="stdown_total"></div>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table id="st_system" class="statuscell" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+											<div class="sthdr">rTorrent:</div></td><td><div class="stval" id="rtorrentv"></div>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td class="statuscell">
+								<div class="stval" id="servertime"></div>
+							</td>
+							<td width=100%></td>
+						</tr>
+					</table>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
